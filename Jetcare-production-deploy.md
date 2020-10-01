@@ -51,3 +51,9 @@ kubectl create secret docker-registry <your_secret_name> \
 ```none
 helm upgrade --install {release_name} --namespace {namespace} ./packages/helm-charts --values=./packages/helm-charts/values_jck8s.yaml --set admin.image.version=prod-9d478ce --set backend.image.version=prod-9d478ce
 ```
+
+**note**
+
+```none
+helm upgrade --install test123 ./test123 --recreate-pods
+```
