@@ -7,6 +7,14 @@
 > - VPS OS: CentOS 7+
 > - Local OS: Ubuntu 20.04
 
+### Install List
+
+- [x] Container runtimes: Docker
+- [x] Dashboard
+- [x] Calico: network plugin
+- [x] Traefik: Load balancer
+- [ ] Storage
+
 ## Container runtimes: Docker
 
 ```none
