@@ -21,7 +21,7 @@ helm repo update
 > Not Exists: install
 
 ```none
-helm upgrade --install traefik traefik/traefik --set="additionalArguments={--providers.kubernetesingress,--entryPoints.websecure.http.tls=true}" --set="autoscaling.enabled=true" --set="autoscaling.minReplicas=2" --set="autoscaling.maxReplicas=10"
+helm upgrade --install traefik traefik/traefik --set="additionalArguments={--providers.kubernetesingress,--entryPoints.websecure.http.tls=true}" --set="autoscaling.enabled=true" --set="autoscaling.minReplicas=1" --set="autoscaling.maxReplicas=10"
 ```
 
 **Exposing the Traefik dashboard**
