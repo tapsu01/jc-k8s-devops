@@ -34,7 +34,7 @@ kubectl create secret docker-registry <your_secret_name> \
   --docker-server=https://docker.pkg.github.com \
   --docker-username=<github_username> \
   --docker-password=<github_secret> \
-  --docker-email=<email>
+  --namespace=<namespace>
 ```
 
 ## Step-by-step deploy
