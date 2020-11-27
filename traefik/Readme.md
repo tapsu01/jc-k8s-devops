@@ -47,7 +47,6 @@ spec:
   redirectScheme:
     scheme: https
     permanent: true
-    port: 443
 ```
 
 Apply:
