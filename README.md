@@ -13,6 +13,7 @@
 - [x] Dashboard
 - [x] Calico: network plugin
 - [x] Traefik: Load balancer
+- [ ] Add cluster node
 - [ ] Storage
 
 ## Container runtimes: Docker

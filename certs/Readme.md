@@ -18,30 +18,6 @@ $ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/rel
 $ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager-legacy.yaml
 ```
 
-**Option 2: Installing with Helm**
-
-- Add the Jetstack Helm repository:
-
-```none
-helm repo add jetstack https://charts.jetstack.io
-```
-
-- Update your local Helm chart repository cache:
-
-```none
-helm repo update
-```
-
-- To install the cert-manager Helm chart:
-
-```none
-# Helm v3+
-helm install \
-  cert-manager jetstack/cert-manager \
-  --namespace cert-manager \
-  --version v1.0.1
-```
-
 **Output should be like below**
 
 ```none

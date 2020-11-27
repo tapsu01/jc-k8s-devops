@@ -1,5 +1,7 @@
 # Redis
 
+**Add bitnami repo**
+
 ```none
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
@@ -62,3 +64,78 @@ kubectl port-forward --namespace jetcare svc/redis-master 6379:6379 &
 ## Bugs
 
 1. pod has unbound immediate PersistentVolumeClaims: [follow link](https://medium.com/@thanawitsupinnapong/setting-up-redis-in-kubernetes-with-helm-and-manual-persistent-volume-f1d52fa1919f)
+
+**Create Persistent Volume**
+File: `redis-pv.yaml`
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis-data-redis-master-0
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data/redis-master-0
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis-data-redis-slave-0
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data/redis-slave-0
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis-data-redis-slave-1
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data/redis-slave-1
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis-data-redis-slave-2
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data/redis-slave-2
+```
+
+Apply:
+
+```sh
+kubectl apply -f redis-pv.yaml
+```
+
+**Install redis**
+
+```sh
+helm install redis bitnami/redis \
+  --set master.persistence.enabled=true \
+  --set master.persistence.path=/mnt/data/redis-master-0 \
+  --set master.persistence.size=8Gi \
+  --set master.persistence.storageClass=manual \
+  --set slave.persistence.enabled=false \
+  --namespace={namespace}
+```
