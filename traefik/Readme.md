@@ -24,6 +24,14 @@ helm repo update
 helm upgrade --install traefik traefik/traefik --set="additionalArguments={--providers.kubernetesingress,--entryPoints.websecure.http.tls=true}" --set="autoscaling.enabled=true" --set="autoscaling.minReplicas=1" --set="autoscaling.maxReplicas=10"
 ```
 
+**Or download release version from https://github.com/traefik/traefik-helm-chart/releases**
+
+> Unzip and cd to `traefik` folder
+
+```sh
+helm upgrade --install traefik ./ --set="additionalArguments={--providers.kubernetesingress,--entryPoints.websecure.http.tls=true}" --set="autoscaling.enabled=true" --set="autoscaling.minReplicas=1" --set="autoscaling.maxReplicas=10"
+```
+
 **Exposing the Traefik dashboard**
 
 ```none
