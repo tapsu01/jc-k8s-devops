@@ -45,30 +45,25 @@ documentation:
 https://cert-manager.io/docs/usage/ingress/
 ```
 
-**Create `issuer`**
+**Create `traefik issuer`**
 
 File: `letsencrypt-issuer.yaml`
 
 ```yaml
-apiVersion: cert-manager.io/v1
+apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-staging
+  name: letsencrypt-k8s-prod
 spec:
   acme:
-    # You must replace this email address with your own.
-    # Let's Encrypt will use this to contact you about expiring
-    # certificates, and issues related to your account.
-    email: user@example.com
     server: https://acme-v02.api.letsencrypt.org/directory
+    email: your_email@email.com
     privateKeySecretRef:
-      # Secret resource that will be used to store the account's private key.
-      name: example-issuer-account-key
-    # Add a single challenge solver, HTTP01 using nginx
+      name: letsencrypt-k8s-prod
     solvers:
       - http01:
           ingress:
-            class: nginx
+            class: traefik
 ```
 
 ```none
